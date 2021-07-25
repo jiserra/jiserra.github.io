@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>Date and Time with unsplash</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-image: url(https://source.unsplash.com/random/2880x1756);
+            
+        }
+        .time {
+            font-size: 6em;
+            color: white;
+            font-weight: bold;
+            font-family: "Futura";
+            text-align: right;
+            position: absolute;
+            bottom: 16%;
+            right: 10%
+        }
+    </style>
+    <div class="time">
+        <span id="date">Sun, Jul 25th</span> • <span id="time">03:42pm</span>
+    </div>
+    <script>
+        Date.prototype.today = function () { 
+            return ((this.getDate() < 10)?"0":"") + this.getDate() +"/"+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1) +"/"+ this.getFullYear();
+        }        
+        // For the time now
+        Date.prototype.timeNow = function () {
+            return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes();
+        }
+        function updateDateTime() {
+            document.getElementById('date').textContent = new Date().toDateString()
+            document.getElementById('time').textContent = new Date().timeNow()
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+    </script>
+    
+</head>
+<body>
+    
+</body>
+</html>
